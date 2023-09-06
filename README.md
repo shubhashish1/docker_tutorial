@@ -65,3 +65,69 @@ CONTAINER ID   IMAGE         COMMAND                  CREATED         STATUS    
 ```
 docker stop <the id> 219e5aff8b7e
 ```
+
+## Let's push the docker image created to docker hub
+
+```
+Login to dockehub from url hub.docker.com
+
+Then go to cmd and login to docker hub with command "docker login"
+```
+
+## If we want to check the images
+
+```
+docker images
+```
+
+## Now if we want to rename our docker image then:
+
+```
+We can remove the existing image and recreate it.
+
+To remove the image command is : "docker image rm -f <imagename> welcome-app"
+
+But why are we renaming it?
+
+Becz in docker hub the naming should be username/dockerimage
+
+To recreate the command is "docker build -t shubhashishmishra/welcome-app .
+```
+
+## second way of renaming the docker image
+
+```
+docker tag welcome-app shubhashishmishra/welcome-apps
+
+But it doesn't rename the same image rather it will create a copy of same image with the different name
+```
+
+## Now to push the docker image into the dockerhub
+
+```
+docker push shubhashishmishra/welcome-apps:latest  
+latest is used here for the latest version to be picked as same docker image can haqve many versions.
+But we need to pick the latest one which we can find from the latest tag
+
+REPOSITORY                       TAG       IMAGE ID       CREATED        SIZE
+welcome-app                      latest    4d54f8c438b4   11 hours ago   60.7MB
+shubhashishmishra/welcome-apps   latest    4d54f8c438b4   11 hours ago   60.7MB
+
+```
+
+## To pull a docker image from dockerhub
+
+```
+We can use a command 
+docker pull shubhashishmishra/welcome-apps:latest
+This command we can find from the dockerhub and then inside our image then to the tags section
+```
+
+## Once pulled we can run by command
+
+```
+docker run -d -p 5000:5000 shubhashishmishra/welcome-apps:latest
+
+In detach mode we only get one id
+Then we can go to our browser and run the localhost we have created and everything will work as it is
+```
