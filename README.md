@@ -131,3 +131,42 @@ docker run -d -p 5000:5000 shubhashishmishra/welcome-apps:latest
 In detach mode we only get one id
 Then we can go to our browser and run the localhost we have created and everything will work as it is
 ```
+
+
+## Docker Compose
+
+```
+Mysql, Mongo DB, Redis (Used for cacheing purpose to make the data run faster) can't be there in the same container. So they will need different container for themselves. Sp to access the application which needs sql query to fetch the data we will have to handle it in a different way.
+
+
+SO DOCKER COMPOSE is used to create and run multi-container applications
+So here we will be having docker_compose.yml file to run the multi-containers
+```
+
+```
+We need to create a docker-compose.yml file with following content
+
+version : "1.0.0"
+services:
+   web:
+     image: webapp
+     build: .
+     ports:
+       - "5000:5000"
+   mysql:
+     image: mysql
+```
+
+```
+Now we can run the docker-compose by command
+docker compose up
+
+To stop it we can use command
+docker compose stop
+```
+
+## If we change something in our existing application, then to reflect the change in docker we need
+
+```
+DOCKER VOLUMES
+```
